@@ -24,18 +24,25 @@ import android.widget.TextView;
 public class GridViewPager extends ViewPager {
 	
 	private List<BGGridView> mGridViewList = null;
+	
 	private static final int DEFAULT_COLUMN_NUMBER = 2;
 	private static final int DEFAULT_ROW_NUMBER = 3;
+	
 	private int mRowNumber = 0;
 	private int mColumnNumber = 0;
+	
 	private float mCellMinWidth = 0;
 	private float mCellMinHeight = 0;
 	private float mColumnMargin = 0;
 	private float mRowMargin = 0;
+	
 	private BaseAdapter mAdapter;
+	
 	private View mEmptyView = null;
+	
 	private int mPaddingLeft = 0;
 	private int mPaddingRight = 0;
+	
 	private int mSelection = -1;
 	
 	public GridViewPager(Context context) {
@@ -47,40 +54,40 @@ public class GridViewPager extends ViewPager {
 		if(attrs != null){
 			TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.GridViewPager);
 			final int N = a.getIndexCount();
-	        for (int i = 0; i < N; i++) {
-	            int attr = a.getIndex(i);
-	            switch (attr) {
-	            case R.styleable.GridViewPager_gvpColumnNumber:
-	            	mColumnNumber = a.getInt(attr, -1);
-	            	break;
-	            case R.styleable.GridViewPager_gvpRowNumber:
-	            	mRowNumber = a.getInt(attr, -1);
-	            	break;
-	            case R.styleable.GridViewPager_gvpColumnMargin:
-	            	mColumnMargin = a.getDimension(attr, 0);
-	            	break;
-	            case R.styleable.GridViewPager_gvpRowMargin:
-	            	mRowMargin = a.getDimension(attr, 0);
-	            	break;
-	            case R.styleable.GridViewPager_gvpMinCellWidth:
-	            	mCellMinWidth = a.getDimension(attr, -1);
-	            	break;
-	            case R.styleable.GridViewPager_gvpMinCellHeight:
-	            	mCellMinHeight = a.getDimension(attr, -1);
-	            	break;
-	            case R.styleable.GridViewPager_android_padding:
-	            	int padding = a.getDimensionPixelSize(attr, 0);
-	            	setPadding(padding, padding, padding, padding);
-	            	break;
-	            case R.styleable.GridViewPager_android_paddingLeft:
-	            	mPaddingLeft = a.getDimensionPixelSize(attr, 0);
-	            	break;
-	            case R.styleable.GridViewPager_android_paddingRight:
-	            	mPaddingRight = a.getDimensionPixelSize(attr, 0);
-	            	break;
-	            	
-	            }
-	        }
+		        for (int i = 0; i < N; i++) {
+		            int attr = a.getIndex(i);
+		            switch (attr) {
+		            case R.styleable.GridViewPager_gvpColumnNumber:
+		            	mColumnNumber = a.getInt(attr, -1);
+		            	break;
+		            case R.styleable.GridViewPager_gvpRowNumber:
+		            	mRowNumber = a.getInt(attr, -1);
+		            	break;
+		            case R.styleable.GridViewPager_gvpColumnMargin:
+		            	mColumnMargin = a.getDimension(attr, 0);
+		            	break;
+		            case R.styleable.GridViewPager_gvpRowMargin:
+		            	mRowMargin = a.getDimension(attr, 0);
+		            	break;
+		            case R.styleable.GridViewPager_gvpMinCellWidth:
+		            	mCellMinWidth = a.getDimension(attr, -1);
+		            	break;
+		            case R.styleable.GridViewPager_gvpMinCellHeight:
+		            	mCellMinHeight = a.getDimension(attr, -1);
+		            	break;
+		            case R.styleable.GridViewPager_android_padding:
+		            	int padding = a.getDimensionPixelSize(attr, 0);
+		            	setPadding(padding, padding, padding, padding);
+		            	break;
+		            case R.styleable.GridViewPager_android_paddingLeft:
+		            	mPaddingLeft = a.getDimensionPixelSize(attr, 0);
+		            	break;
+		            case R.styleable.GridViewPager_android_paddingRight:
+		            	mPaddingRight = a.getDimensionPixelSize(attr, 0);
+		            	break;
+		            	
+		            }
+		        }
 			if(mColumnNumber <=0 && mCellMinWidth <= 0){
 				mColumnNumber = DEFAULT_COLUMN_NUMBER;
 			}
