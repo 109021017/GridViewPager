@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fuwen.gridpager.R;
+import com.jfeinstein.jazzyviewpager.JazzyViewPager;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-public class GridViewPager extends ViewPager {
+public class GridViewPager extends JazzyViewPager {
 	
 	private List<BGGridView> mGridViewList = null;
 	
@@ -292,7 +292,9 @@ public class GridViewPager extends ViewPager {
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
 			container.addView(mGridViewList.get(position),new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-			return mGridViewList.get(position);
+			Object obj = mGridViewList.get(position);
+			setObjectForPosition(obj, position);
+			return obj;
 		}
 	}
 	
