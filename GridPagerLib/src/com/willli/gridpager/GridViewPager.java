@@ -228,6 +228,7 @@ public class GridViewPager extends JazzyViewPager {
 	}
 	
 	private void resetAdapter() {
+		int pageBefore = getCurrentItem();
 		int pageSize = mColumnNumber*mRowNumber;
 		if(pageSize <= 0)
 			return;
@@ -268,6 +269,7 @@ public class GridViewPager extends JazzyViewPager {
 			}
 		}
 		super.setAdapter(new GridPagerAdapter());
+		setCurrentItem(pageBefore);
 		if(mSelection >= 0)
 			setSelection(mSelection);
 	}
