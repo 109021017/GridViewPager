@@ -17,4 +17,7 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    
+    <style name="Theme" parent="@android:style/Theme.Holo.Wallpaper.NoTitleBar"/>
+    
 </resources>

@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#66000000"
+    tools:context=".Launcher" 
+    xmlns:app="http://schemas.android.com/apk/res/com.willli.allappslauncher">
+
+    <com.willli.gridpager.GridViewPager 
+        android:id="@+id/all_apps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:gvpMinCellWidth="75dp"
+        app:gvpMinCellHeight="75dp"
+        app:gvpColumnMargin="10dp"
+        app:gvpRowMargin="10dp"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"/>
+
+</LinearLayout>
