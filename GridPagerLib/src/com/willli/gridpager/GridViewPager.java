@@ -228,6 +228,7 @@ public class GridViewPager extends ViewPager {
 	}
 	
 	private void resetAdapter() {
+		int pageBefore = getCurrentItem();
 		int pageSize = mColumnNumber*mRowNumber;
 		if(pageSize <= 0)
 			return;
@@ -268,8 +269,11 @@ public class GridViewPager extends ViewPager {
 			}
 		}
 		super.setAdapter(new GridPagerAdapter());
-		if(mSelection >= 0)
+		if(mSelection >= 0){
 			setSelection(mSelection);
+		}esle{
+			setCurrentItem(pageBefore);
+		}
 	}
 
 	private class GridPagerAdapter extends PagerAdapter {
