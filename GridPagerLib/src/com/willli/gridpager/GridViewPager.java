@@ -3,11 +3,9 @@ package com.willli.gridpager;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fuwen.gridpager.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Parcel;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -20,6 +18,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import com.fuwen.gridpager.R;
 
 public class GridViewPager extends ViewPager {
 	
@@ -147,62 +147,22 @@ public class GridViewPager extends ViewPager {
 	
 	@Override
 	public Parcelable onSaveInstanceState() {
-		//begin boilerplate code that allows parent classes to save state
-	    Parcelable superState = super.onSaveInstanceState();
-
-	    SavedState ss = new SavedState(superState);
-	    //end
-
-	    ss.selection = getSelection();
-	    return ss;
+		Bundle bundle = new Bundle();
+	    bundle.putParcelable("instanceState", super.onSaveInstanceState());
+	    bundle.putInt("selection", getSelection());
+	    return bundle;
 	}
 	
 	@Override
 	public void onRestoreInstanceState(Parcelable state) {
-		//begin boilerplate code so parent classes can restore state
-	    if(!(state instanceof SavedState)) {
-	      super.onRestoreInstanceState(state);
-	      return;
-	    }
-
-	    SavedState ss = (SavedState)state;
-	    super.onRestoreInstanceState(ss.getSuperState());
-	    //end
-
-	    setSelection(ss.selection);
-	    Log.e("NULL", "setSelection: "+ss.selection);
+		if (state instanceof Bundle) {
+			Bundle bundle = (Bundle) state;
+			this.mSelection = bundle.getInt("selection");
+			state = bundle.getParcelable("instanceState");
+		}
+		super.onRestoreInstanceState(state);
 	}
 	
-	static class SavedState extends BaseSavedState {
-		int selection;
-
-		SavedState(Parcelable superState) {
-			super(superState);
-		}
-
-		private SavedState(Parcel in) {
-			super(in);
-			this.selection = in.readInt();
-		}
-
-		@Override
-		public void writeToParcel(Parcel out, int flags) {
-			super.writeToParcel(out, flags);
-			out.writeInt(this.selection);
-		}
-
-		// required field that makes Parcelables from a Parcel
-		public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
-			public SavedState createFromParcel(Parcel in) {
-				return new SavedState(in);
-			}
-
-			public SavedState[] newArray(int size) {
-				return new SavedState[size];
-			}
-		};
-	}
-
 	public void setEmptyView(TextView emptyView) {
 		mEmptyView = emptyView;
 	}
@@ -217,7 +177,6 @@ public class GridViewPager extends ViewPager {
 	}
 	
 	private void resetAdapter() {
-		int pageBefore = getCurrentItem();
 		int pageSize = mColumnNumber*mRowNumber;
 		if(pageSize <= 0)
 			return;
@@ -258,11 +217,8 @@ public class GridViewPager extends ViewPager {
 			}
 		}
 		super.setAdapter(new GridPagerAdapter());
-		if(mSelection >= 0){
+		if(mSelection >= 0)
 			setSelection(mSelection);
-		}esle{
-			setCurrentItem(pageBefore);
-		}
 	}
 
 	private class GridPagerAdapter extends PagerAdapter {
