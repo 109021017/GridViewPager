@@ -56,37 +56,26 @@ public class GridViewPager extends ViewPager {
 			final int N = a.getIndexCount();
 		        for (int i = 0; i < N; i++) {
 		            int attr = a.getIndex(i);
-		            switch (attr) {
-		            case R.styleable.GridViewPager_gvpColumnNumber:
-		            	mColumnNumber = a.getInt(attr, -1);
-		            	break;
-		            case R.styleable.GridViewPager_gvpRowNumber:
-		            	mRowNumber = a.getInt(attr, -1);
-		            	break;
-		            case R.styleable.GridViewPager_gvpColumnMargin:
-		            	mColumnMargin = a.getDimension(attr, 0);
-		            	break;
-		            case R.styleable.GridViewPager_gvpRowMargin:
-		            	mRowMargin = a.getDimension(attr, 0);
-		            	break;
-		            case R.styleable.GridViewPager_gvpMinCellWidth:
-		            	mCellMinWidth = a.getDimension(attr, -1);
-		            	break;
-		            case R.styleable.GridViewPager_gvpMinCellHeight:
-		            	mCellMinHeight = a.getDimension(attr, -1);
-		            	break;
-		            case R.styleable.GridViewPager_android_padding:
-		            	int padding = a.getDimensionPixelSize(attr, 0);
-		            	setPadding(padding, padding, padding, padding);
-		            	break;
-		            case R.styleable.GridViewPager_android_paddingLeft:
-		            	mPaddingLeft = a.getDimensionPixelSize(attr, 0);
-		            	break;
-		            case R.styleable.GridViewPager_android_paddingRight:
-		            	mPaddingRight = a.getDimensionPixelSize(attr, 0);
-		            	break;
-		            	
-		            }
+		            if (attr == R.styleable.GridViewPager_gvpColumnNumber) {
+						mColumnNumber = a.getInt(attr, -1);
+					} else if (attr == R.styleable.GridViewPager_gvpRowNumber) {
+						mRowNumber = a.getInt(attr, -1);
+					} else if (attr == R.styleable.GridViewPager_gvpColumnMargin) {
+						mColumnMargin = a.getDimension(attr, 0);
+					} else if (attr == R.styleable.GridViewPager_gvpRowMargin) {
+						mRowMargin = a.getDimension(attr, 0);
+					} else if (attr == R.styleable.GridViewPager_gvpMinCellWidth) {
+						mCellMinWidth = a.getDimension(attr, -1);
+					} else if (attr == R.styleable.GridViewPager_gvpMinCellHeight) {
+						mCellMinHeight = a.getDimension(attr, -1);
+					} else if (attr == R.styleable.GridViewPager_android_padding) {
+						int padding = a.getDimensionPixelSize(attr, 0);
+						setPadding(padding, padding, padding, padding);
+					} else if (attr == R.styleable.GridViewPager_android_paddingLeft) {
+						mPaddingLeft = a.getDimensionPixelSize(attr, 0);
+					} else if (attr == R.styleable.GridViewPager_android_paddingRight) {
+						mPaddingRight = a.getDimensionPixelSize(attr, 0);
+					}
 		        }
 			if(mColumnNumber <=0 && mCellMinWidth <= 0){
 				mColumnNumber = DEFAULT_COLUMN_NUMBER;
